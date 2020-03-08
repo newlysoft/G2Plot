@@ -15,6 +15,7 @@ export {
   getTheme,
   Util,
 } from '@antv/g2';
+export { MarkerSymbols } from '@antv/g2/lib/util/marker';
 export { VIEW_LIFE_CIRCLE } from '@antv/g2/lib/constant';
 export {
   Datum,
