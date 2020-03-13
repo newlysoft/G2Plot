@@ -121,6 +121,9 @@ export default class LineLayer<T extends LineLayerConfig = LineLayerConfig> exte
       label.render();
     }
     if (options.markerPoints) {
+      // 清空
+      each(this.markerPoints, (markerPoint: MarkerPoint) => markerPoint.destroy());
+      this.markerPoints = [];
       options.markerPoints.forEach((markerPointOpt) => {
         if (markerPointOpt.visible) {
           const markerPoint = new MarkerPoint({

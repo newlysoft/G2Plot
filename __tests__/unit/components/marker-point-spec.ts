@@ -114,11 +114,16 @@ describe('Marker Point', () => {
         click: () => (clicked = true),
       },
       style: {
+        normal: {
+          stroke: 'transparent',
+        },
         selected: {
           stroke: 'blue',
+          fill: 'red',
         },
         active: {
           stroke: 'yellow',
+          fill: 'red',
         },
       },
     });
@@ -126,17 +131,19 @@ describe('Marker Point', () => {
     const points = markerPoint.points;
     setTimeout(() => {
       // @ts-ignore
+      markerPoint.container.emit(`${markerPoint.name}:mouseenter`, {
+        target: points[1],
+      });
+      expect(points[1].attr('stroke')).toBe('yellow');
+      expect(points[1].attr('fill')).toBe('red');
+      // @ts-ignore
       markerPoint.container.emit(`${markerPoint.name}:click`, {
         target: points[0],
       });
       expect(clicked).toBe(true);
       expect(points[0].attr('stroke')).toBe('blue');
-      // @ts-ignore
-      markerPoint.container.emit(`${markerPoint.name}:mouseenter`, {
-        target: points[1],
-      });
-      expect(clicked).toBe(true);
-      expect(points[1].attr('stroke')).toBe('yellow');
+      expect(points[0].attr('fill')).toBe('red');
+      expect(points[1].attr('stroke')).toBe('transparent');
       done();
     });
   });

@@ -4,7 +4,7 @@ import LineLayer, { LineViewConfig } from './layer';
 
 export interface LineConfig extends LineViewConfig, PlotConfig {}
 
-export default class Line extends BasePlot<LineConfig> {
+export default class Line extends BasePlot<LineConfig, LineLayer> {
   public static getDefaultOptions: typeof LineLayer.getDefaultOptions = LineLayer.getDefaultOptions;
 
   public createLayers(props) {
